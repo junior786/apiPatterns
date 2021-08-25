@@ -1,12 +1,13 @@
-package com.junior.modules;
+package com.junior.modules.exception;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
 @Data
-@Builder
+@SuperBuilder
 public class ErrorDetails {
     private String message;
     private LocalDateTime localDateTime;

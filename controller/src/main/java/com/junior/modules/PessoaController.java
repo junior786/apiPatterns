@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -18,7 +19,7 @@ public class PessoaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/pessoa")
-    public PessoaDto savePessoa(@RequestBody PostDtoPessoa pessoa) {
+    public PessoaDto savePessoa(@Valid @RequestBody PostDtoPessoa pessoa) {
         return pessoaService.savePessoa(pessoa);
     }
 
