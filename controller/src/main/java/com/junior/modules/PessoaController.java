@@ -37,7 +37,13 @@ public class PessoaController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/pessoa/{id}")
-    public void deletrById(@PathVariable Long id){
-         pessoaService.deleteById(id);
+    public void deleteById(@PathVariable Long id) {
+        pessoaService.deleteById(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("pessoa/{id}")
+    public PessoaDto putById(@PathVariable Long id, @RequestBody PessoaPostDto pessoa) {
+        return pessoaService.putById(pessoa,id);
     }
 }

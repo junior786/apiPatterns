@@ -1,5 +1,6 @@
 package com.junior.modules;
 
+import com.junior.modules.dto.EnderecoDto;
 import com.junior.modules.dto.PessoaDto;
 import com.junior.modules.dto.PessoaPostDto;
 import lombok.AllArgsConstructor;
@@ -28,4 +29,9 @@ public class PessoaService {
     public void deleteById(Long id){
          facade.deleteById(id);
     }
+
+    public PessoaDto putById(PessoaPostDto pessoaPostDto, Long id){
+        return facade.putPessoa(pessoaPostDto, id);
+    }
+
 }

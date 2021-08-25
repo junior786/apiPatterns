@@ -21,7 +21,7 @@ public class Endereco {
     private String bairro;
     private String localidade;
     private String uf;
-    private int numero;
+    private Integer numero;
     @OneToOne
     private Pessoa pessoa;
 
