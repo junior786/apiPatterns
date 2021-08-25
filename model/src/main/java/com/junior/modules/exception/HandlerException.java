@@ -44,12 +44,12 @@ public class HandlerException {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<?> DefaultHandlerExcepetion(HttpMessageNotReadableException badRequestExcepetion){
+    public ResponseEntity<?> DefaultHandlerExcepetion(HttpMessageNotReadableException badRequestExcepetion) {
         ErrorDetails errorDetails = ErrorDetails.builder()
                 .detail("Erro encontrado no corpo da requisição")
                 .message("Conferir o corpo da requisição")
                 .localDateTime(LocalDateTime.now())
                 .build();
-        return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 }

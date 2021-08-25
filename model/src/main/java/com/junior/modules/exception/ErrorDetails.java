@@ -1,6 +1,5 @@
 package com.junior.modules.exception;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 

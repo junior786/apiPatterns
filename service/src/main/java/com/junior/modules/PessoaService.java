@@ -1,7 +1,7 @@
 package com.junior.modules;
 
 import com.junior.modules.dto.PessoaDto;
-import com.junior.modules.dto.PostDtoPessoa;
+import com.junior.modules.dto.PessoaPostDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class PessoaService {
 
     Facade facade;
 
-    public PessoaDto savePessoa(PostDtoPessoa pessoa) {
+    public PessoaDto savePessoa(PessoaPostDto pessoa) {
         return facade.cadasterPessoa(pessoa);
     }
 

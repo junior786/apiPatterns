@@ -1,7 +1,7 @@
 package com.junior.modules;
 
 import com.junior.modules.dto.PessoaDto;
-import com.junior.modules.dto.PostDtoPessoa;
+import com.junior.modules.dto.PessoaPostDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class PessoaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/pessoa")
-    public PessoaDto savePessoa(@Valid @RequestBody PostDtoPessoa pessoa) {
+    public PessoaDto savePessoa(@Valid @RequestBody PessoaPostDto pessoa) {
         return pessoaService.savePessoa(pessoa);
     }
 

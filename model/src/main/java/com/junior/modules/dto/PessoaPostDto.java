@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostDtoPessoa {
+public class PessoaPostDto {
     @NotBlank
     private String nome;
     @NotBlank
@@ -21,5 +21,4 @@ public class PostDtoPessoa {
     @DecimalMin("1")
     @NotNull
     private int numero;
-    private EnderecoDto endereco;
 }

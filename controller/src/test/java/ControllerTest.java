@@ -1,9 +1,8 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.junior.modules.*;
-import com.junior.modules.dto.PostDtoPessoa;
+import com.junior.modules.dto.PessoaPostDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,7 +48,7 @@ public class ControllerTest {
 
     @Test
     public void post_test() throws Exception {
-        PostDtoPessoa pessoa = new PostDtoPessoa();
+        PessoaPostDto pessoa = new PessoaPostDto();
 
         mockMvc.perform(post("/v1/pessoa")
                 .contentType(MediaType.APPLICATION_JSON)
