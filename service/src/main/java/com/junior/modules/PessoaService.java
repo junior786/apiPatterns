@@ -1,6 +1,5 @@
 package com.junior.modules;
 
-import com.junior.modules.dto.EnderecoDto;
 import com.junior.modules.dto.PessoaDto;
 import com.junior.modules.dto.PessoaPostDto;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,5 @@
 package com.junior.modules.exception;
 
-import com.junior.modules.Endereco;
 import com.junior.modules.Pessoa;
 import com.junior.modules.dto.EnderecoDto;
 import com.junior.modules.dto.PessoaDto;
@@ -23,9 +22,8 @@ public class FacadeValid {
     }
 
     public Pessoa putPessoaValid(Pessoa pessoa, PessoaPostDto pessoaPostDto) {
-        if (pessoaPostDto.getCep()!= null){
+        if (pessoaPostDto.getCep()!= null)
             throw new HttpMessageNotReadableException("Campo CEP não pode ser atribuido no corpo");
-        }
         if (pessoaPostDto.getNome() != null) {
             pessoa.setNome(pessoaPostDto.getNome());
         }

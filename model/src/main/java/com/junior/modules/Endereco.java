@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

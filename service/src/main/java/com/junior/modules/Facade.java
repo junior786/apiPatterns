@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,8 +29,9 @@ public class Facade {
                 .nome(pessoa.getNome())
                 .sexo(pessoa.getSexo()).build();
 
-        Pessoa pessoaSalva = pessoaRepository.save(p1);
         Endereco endereco = getCep.getEndereco(pessoa.getCep());
+        Pessoa pessoaSalva = pessoaRepository.save(p1);
+
         endereco.setNumero(pessoa.getNumero());
         endereco.setPessoa(pessoaSalva);
         pessoaSalva.setEndereco(endereco);
@@ -47,7 +47,6 @@ public class Facade {
         return pessoaRepository.findAll().stream()
                 .map(pessoa -> PessoaDto.getInstance(pessoa, EnderecoDto.getInstance(pessoa.getEndereco())))
                 .collect(Collectors.toList());
-
     }
 
     public PessoaDto getById(Long id) {

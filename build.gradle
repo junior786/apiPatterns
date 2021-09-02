@@ -9,9 +9,7 @@ mainClassName = "com.junior.modules.ModulesApplication"
 
 dependencies {
     implementation project(':controller')
-    implementation project(':model')
-    implementation project(':service')
-    implementation project(':apiCep')
+
 }
 
 allprojects {
