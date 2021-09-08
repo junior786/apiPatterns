@@ -1,5 +1,6 @@
 package com.junior.modules.dto;
 
+import com.junior.modules.validation.SexoValid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class PessoaPostDto {
     @NotBlank
     private String nome;
     @NotBlank
+    @SexoValid
     private String sexo;
     @NotBlank
     private String cep;

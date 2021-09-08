@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class EnderecoService {
-    Facade facade;
+    FacadeEndereco impFacade;
 
     public EnderecoDto getEndereco(Long id) {
-        return facade.getEndereco(id);
+        return impFacade.getEndereco(id);
     }
-    public EnderecoDto putEndereco(Long id, EnderecoDto enderecoDto){
-        return facade.putEndereco(enderecoDto,id);
+
+    public EnderecoDto putEndereco(Long id, EnderecoDto enderecoDto) {
+        return impFacade.putEndereco(enderecoDto, id);
     }
 }

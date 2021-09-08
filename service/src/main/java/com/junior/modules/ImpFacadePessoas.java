@@ -5,16 +5,15 @@ import com.junior.modules.dto.PessoaDto;
 import com.junior.modules.dto.PessoaPostDto;
 import com.junior.modules.exception.FacadeValid;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 @AllArgsConstructor
-public class Facade {
+public class ImpFacadePessoas implements FacadePessoas {
 
     private EnderecoRepository enderecoRepository;
 
@@ -66,29 +65,5 @@ public class Facade {
         pessoa = facadeValid.putPessoaValid(pessoa, pessoaDto);
         pessoaRepository.save(pessoa);
         return PessoaDto.getInstance(pessoa, EnderecoDto.getInstance(pessoa.getEndereco()));
-    }
-
-    public EnderecoDto getEndereco(Long id) {
-        Optional<Pessoa> byId = pessoaRepository.findById(id);
-        PessoaDto present = facadeValid.isPresent(byId);
-        return present.getEndereco();
-    }
-
-    public EnderecoDto putEndereco(EnderecoDto enderecoDto, Long id) {
-        Optional<Pessoa> byId = pessoaRepository.findById(id);
-        facadeValid.isPresent(byId);
-        Pessoa pessoa = byId.get();
-        Endereco endereco = enderecoRepository.findById(pessoa.getEndereco().getId()).get();
-        BiConsumer<Endereco, EnderecoDto> consumer = (e, d) -> {
-            e.setNumero(d.getNumero());
-            e.setBairro(d.getBairro());
-            e.setCep(d.getCep());
-            e.setComplemento(d.getComplemento());
-            e.setLocalidade(d.getLocalidade());
-            e.setUf(d.getUf());
-        };
-        consumer.accept(endereco, enderecoDto);
-        enderecoRepository.save(endereco);
-        return enderecoDto;
     }
 }

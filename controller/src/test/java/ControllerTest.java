@@ -22,11 +22,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = {PessoaController.class, PessoaService.class, Facade.class, FacadeValid.class})
+@SpringBootTest(classes = {PessoaController.class, PessoaService.class, ImpFacadePessoas.class, FacadeValid.class})
 @AutoConfigureMockMvc
 @EnableWebMvc
 @ExtendWith(SpringExtension.class)
-public class ControllerTest {
+class ControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -41,23 +41,23 @@ public class ControllerTest {
     GetCep getCep;
 
     @Test
-    public void getAll_test() throws Exception {
+    void getAll_test() throws Exception {
         mockMvc.perform(get("/v1/pessoas"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void post_test() throws Exception {
+    void post_test() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         PessoaPostDto pessoaPostDto = PessoaPostDto.builder()
                 .nome("teste")
-                .sexo("teste")
+                .sexo("masculino")
                 .numero(100)
                 .cep("100")
                 .build();
         Pessoa pessoa = Pessoa.builder()
                 .nome("teste")
-                .sexo("teste")
+                .sexo("masculino")
                 .build();
         Endereco endereco = Endereco.builder()
                 .cep("100")
@@ -76,7 +76,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void get_byId() throws Exception {
+    void get_byId() throws Exception {
         Endereco endereco = Endereco.builder()
                 .cep("1000")
                 .id(1L)
@@ -92,7 +92,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void put_byId() throws Exception {
+    void put_byId() throws Exception {
         PessoaPostDto pessoa = PessoaPostDto.builder()
                 .nome("Teste test")
                 .sexo("Teste")
@@ -117,14 +117,14 @@ public class ControllerTest {
     }
 
     @Test
-    public void delete_byId() throws Exception {
+    void delete_byId() throws Exception {
         mockMvc.perform(delete("/v1/pessoa/3"))
                 .andExpect(status().isOk());
 
     }
 
     @Test
-    public void put_byId_failed() throws Exception {
+    void put_byId_failed() throws Exception {
         PessoaPostDto pessoa = PessoaPostDto.builder()
                 .nome("Teste test")
                 .sexo("Teste")
@@ -152,7 +152,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void get_by_id_failed() throws Exception {
+    void get_by_id_failed() throws Exception {
         Mockito.when(pessoaRepository.findById(3L)).thenReturn(Optional.empty());
         mockMvc.perform(get("/v1/pessoa/3"))
                 .andExpect(status().isNotFound());

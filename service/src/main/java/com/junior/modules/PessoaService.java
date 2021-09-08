@@ -11,26 +11,26 @@ import java.util.List;
 @AllArgsConstructor
 public class PessoaService {
 
-    Facade facade;
+    FacadePessoas impFacade;
 
     public PessoaDto savePessoa(PessoaPostDto pessoa) {
-        return facade.cadasterPessoa(pessoa);
+        return impFacade.cadasterPessoa(pessoa);
     }
 
     public List<PessoaDto> getAll() {
-        return facade.listAll();
+        return impFacade.listAll();
     }
 
-    public PessoaDto getById(Long id){
-        return facade.getById(id);
+    public PessoaDto getById(Long id) {
+        return impFacade.getById(id);
     }
 
-    public void deleteById(Long id){
-         facade.deleteById(id);
+    public void deleteById(Long id) {
+        impFacade.deleteById(id);
     }
 
-    public PessoaDto putById(PessoaPostDto pessoaPostDto, Long id){
-        return facade.putPessoa(pessoaPostDto, id);
+    public PessoaDto putById(PessoaPostDto pessoaPostDto, Long id) {
+        return impFacade.putPessoa(pessoaPostDto, id);
     }
 
 }

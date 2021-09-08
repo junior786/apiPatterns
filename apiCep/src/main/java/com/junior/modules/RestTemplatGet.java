@@ -3,10 +3,11 @@ package com.junior.modules;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Service
+//Singleton
+@Component
 public class RestTemplatGet {
     private static RestTemplate restTemplate;
 
@@ -18,8 +19,8 @@ public class RestTemplatGet {
             HttpClient httpClient = HttpClientBuilder.create().build();
             HttpComponentsClientHttpRequestFactory httpRequestFactory =
                     new HttpComponentsClientHttpRequestFactory(httpClient);
-            httpRequestFactory.setConnectTimeout(100);
-            return restTemplate = new RestTemplate(httpRequestFactory);
+            httpRequestFactory.setConnectTimeout(3000);
+            restTemplate = new RestTemplate(httpRequestFactory);
         }
         return restTemplate;
     }

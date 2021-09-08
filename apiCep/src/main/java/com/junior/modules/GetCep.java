@@ -1,10 +1,10 @@
 package com.junior.modules;
 
 import com.junior.modules.exception.ExceptionCepNotFound;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Service
+@Component
 public class GetCep {
     private static final String URL = "https://viacep.com.br/ws/";
 
