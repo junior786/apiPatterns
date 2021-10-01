@@ -3,11 +3,14 @@ package com.junior.modules;
 import com.junior.modules.dto.EnderecoDto;
 import com.junior.modules.dto.PessoaDto;
 import com.junior.modules.dto.PessoaPostDto;
+import com.junior.modules.exception.ExceptionPessoaNotFound;
 import com.junior.modules.exception.FacadeValid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -35,6 +38,7 @@ public class ImpFacadePessoas implements FacadePessoas {
         endereco.setPessoa(pessoaSalva);
         pessoaSalva.setEndereco(endereco);
 
+        pessoaSalva.setSexo(pessoaSalva.getSexo().toLowerCase(Locale.ROOT));
         enderecoRepository.save(endereco);
         pessoaRepository.save(pessoaSalva);
 
@@ -45,6 +49,7 @@ public class ImpFacadePessoas implements FacadePessoas {
     public List<PessoaDto> listAll() {
         return pessoaRepository.findAll().stream()
                 .map(pessoa -> PessoaDto.getInstance(pessoa, EnderecoDto.getInstance(pessoa.getEndereco())))
+                .sorted(Comparator.comparing(PessoaDto::getNome))
                 .collect(Collectors.toList());
     }
 
@@ -61,7 +66,7 @@ public class ImpFacadePessoas implements FacadePessoas {
     public PessoaDto putPessoa(PessoaPostDto pessoaDto, Long id) {
         Optional<Pessoa> findId = pessoaRepository.findById(id);
         facadeValid.isPresent(findId);
-        Pessoa pessoa = findId.get();
+        Pessoa pessoa = findId.orElseThrow(() -> new ExceptionPessoaNotFound("Pessoa não encontrada"));
         pessoa = facadeValid.putPessoaValid(pessoa, pessoaDto);
         pessoaRepository.save(pessoa);
         return PessoaDto.getInstance(pessoa, EnderecoDto.getInstance(pessoa.getEndereco()));

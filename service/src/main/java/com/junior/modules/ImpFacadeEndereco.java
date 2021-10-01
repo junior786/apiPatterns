@@ -2,6 +2,7 @@ package com.junior.modules;
 
 import com.junior.modules.dto.EnderecoDto;
 import com.junior.modules.dto.PessoaDto;
+import com.junior.modules.exception.ExceptionPessoaNotFound;
 import com.junior.modules.exception.FacadeValid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,8 +28,9 @@ public class ImpFacadeEndereco implements FacadeEndereco {
     public EnderecoDto putEndereco(EnderecoDto enderecoDto, Long id) {
         Optional<Pessoa> byId = pessoaRepository.findById(id);
         facadeValid.isPresent(byId);
-        Pessoa pessoa = byId.get();
-        Endereco endereco = enderecoRepository.findById(pessoa.getEndereco().getId()).get();
+        Pessoa pessoa = byId.orElseThrow();
+        Endereco endereco = enderecoRepository.findById(pessoa.getEndereco().getId())
+                .orElseThrow(() -> new ExceptionPessoaNotFound("Pessoa nao encontrada"));
         BiConsumer<Endereco, EnderecoDto> consumer = (e, d) -> {
             e.setNumero(d.getNumero());
             e.setBairro(d.getBairro());

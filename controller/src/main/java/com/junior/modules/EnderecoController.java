@@ -9,6 +9,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/v1")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class EnderecoController {
 
     EnderecoService enderecoService;

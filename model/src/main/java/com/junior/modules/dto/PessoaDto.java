@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PessoaDto {
+    private Long id;
     private String nome;
     private String sexo;
     private EnderecoDto endereco;
 
 //FACTORY METHOD
     public static PessoaDto getInstance(Pessoa pessoa, EnderecoDto endereco){
-      return new PessoaDto(pessoa.getNome(),pessoa.getSexo(),endereco);
+      return new PessoaDto(pessoa.getId(),pessoa.getNome(),pessoa.getSexo(),endereco);
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class PessoaController {
 
     final PessoaService pessoaService;
@@ -43,6 +44,6 @@ public class PessoaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("pessoa/{id}")
     public PessoaDto putById(@PathVariable Long id, @RequestBody PessoaPostDto pessoa) {
-        return pessoaService.putById(pessoa,id);
+        return pessoaService.putById(pessoa, id);
     }
 }

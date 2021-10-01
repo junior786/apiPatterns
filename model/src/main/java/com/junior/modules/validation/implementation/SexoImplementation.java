@@ -14,7 +14,11 @@ public class SexoImplementation implements ConstraintValidator<SexoValid, String
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        value = value.toLowerCase(Locale.ROOT);
-        return value.equals("masculino") || value.equals("feminino");
+        if (value != null) {
+            value = value.toLowerCase(Locale.ROOT);
+            return value.equals("masculino") || value.equals("feminino");
+        } else {
+            return false;
+        }
     }
 }

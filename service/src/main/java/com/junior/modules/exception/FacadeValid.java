@@ -4,8 +4,10 @@ import com.junior.modules.Pessoa;
 import com.junior.modules.dto.EnderecoDto;
 import com.junior.modules.dto.PessoaDto;
 import com.junior.modules.dto.PessoaPostDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -29,6 +31,9 @@ public class FacadeValid {
         }
         if (pessoaPostDto.getSexo() != null) {
             pessoa.setSexo(pessoaPostDto.getSexo());
+        }
+        if (pessoaPostDto.getNome().equals("") || pessoaPostDto.getSexo().equals("")){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Insira todos os campos");
         }
 
         return pessoa;
